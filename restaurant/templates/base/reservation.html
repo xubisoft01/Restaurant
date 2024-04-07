@@ -1,0 +1,183 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Restaurant | Reservation {% endblock title %}
+
+{% block content %}
+
+
+      <!-- Breadcrumb Start -->
+      <div class="bread-crumb">
+        <div class="container">
+            <div class="matter">
+                <h2>Reservation</h2>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="list-inline-item"><a href="#">Reservation</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Reservation Start -->
+    <div class="reservation no-bg">
+        <div class="container">
+            <div class="row ">
+                <!-- Title Content Start -->
+                <div class="col-sm-12 commontop text-center">
+                    <h4>Book Your Table</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                    {% for allSections in allSections %}
+                        <p>
+                        {{ allSections.booking_table_title}}
+                        </p>
+                    {% endfor %}
+                </div>
+                <!-- Title Content End -->
+                <div class="col-md-12 col-12">
+                    <!-- Reservation Form Start -->
+                    <form action="#" method="post" class="row reservation-form" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-ui-user"></i><input name="name" placeholder="name" id="input-name" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-ui-message"></i><input name="email" placeholder="email" id="input-email" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-phone"></i><input name="phone" placeholder="mobile number" id="input-mobile" min="5" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-ui-calendar"></i><input name="reservation_date" placeholder="2024-02-02 (Date)" id="input-date" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-clock-time"></i><input name="reservation_time" placeholder="06:40 (Time)" id="input-time" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-users"></i><input name="total_person" placeholder="number of persons" id="input-persons" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-12 col-md-12">
+                            <div class="">  
+                                <div id="emailSend" class="alert alert-success" role="alert" style="display: none;">
+                                    <div class="success-text">Your Message has been successfully sent.</div>
+                                </div>
+                                <div id="emailError" class="alert alert-danger" role="alert" style="display: none;">
+                                    <div class="alert-text">Server error <br> Try again later.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-12 col-md-12">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-theme btn-wide">book now</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Reservation Form End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Reservation End  -->
+
+    <!-- Fun-Factor Start -->
+    <div class="fun-factor">
+        <div class="container">
+            <div class="row ">
+                {% for funFactor in funFactor %}
+                <div class="col-sm-3 col-6">
+                    <!-- Fun-Factor Box Start -->
+                    <div class="single-box">
+                        <span>
+                            <i class="icofont {{ funFactor.icone }}"></i>
+                        </span>
+                        <h4 class="number" data-from="100" data-to="{{ funFactor.values }}" data-refresh-interval="10">
+                            {{ funFactor.values }}</h4>
+                        <h3>{{ funFactor.title }}</h3>
+                    </div>
+                    <!-- Fun-Factor Box End -->
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Fun-Factor End -->
+
+    <!-- Testimonials Start  -->
+    <div class="testimonials">
+        <div class="container">
+            <div class="testimonials-inner">
+                <div class="row ">
+                    <!-- Title Content Start -->
+                    <div class="col-sm-12 col-12 commontop white text-center">
+                        <h4>What Our Customers Say</h4>
+                        <div class="divider style-1 center">
+                            <span class="hr-simple left"></span>
+                            <i class="icofont icofont-ui-press hr-icon"></i>
+                            <span class="hr-simple right"></span>
+                        </div>
+                    </div>
+                    <!-- Title Content End -->
+                    <div class="col-sm-12 col-12">
+                        <div class="owl-carousel owl-theme owl-testi">
+                            {% for testMonial in testMonial %}
+                            <div class="item">
+                                <p>{{ testMonial.messages }}</p>
+                                <span>- {{ testMonial.clint_name }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Testimonials End  -->
+
+
+
+<!-- Newsletter Start -->
+<div id="newsletter">
+<div class="container">
+  <div id="subscribe">
+    <!-- Subscribe Form -->
+    <form class="form-horizontal" name="subscribe">
+      <div class="row">
+        <div class="col-sm-6 col-md-7">
+          <div class="input-group">
+            <span class="news">newsletter</span>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Nam iaculis lorem augue, at quam finibus eget.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-5 form-group">
+          <div class="input-group">
+            <input
+              value=""
+              name="subscribe_email"
+              id="subscribe_email"
+              placeholder="Email"
+              type="text"
+            />
+            <button class="btn btn-news" type="submit" value="submit">
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- Subscribe Form -->
+  </div>
+</div>
+</div>
+<!-- Newsletter End -->
+        
+
+{% endblock %}

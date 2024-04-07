@@ -1,0 +1,312 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Restaurant | Blog {% endblock title %}
+
+{% block content %}
+
+
+      <!-- Breadcrumb Start -->
+      <div class="bread-crumb">
+        <div class="container">
+          <div class="matter">
+            <h2>Our Blog</h2>
+            <ul class="list-inline">
+              <li class="list-inline-item"><a href="{% url 'home' %}">HOME</a></li>
+              <li class="list-inline-item"><a href="#">Our Blog</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Breadcrumb End -->
+
+      <!-- Blog Start  -->
+      <div class="blog-detail">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-sm-12 col-lg-9 col-12">
+              <div class="blogs">
+                <!--  Blog Top Image Start  -->
+                <div class="image">
+                  <img
+                    src="{{ blog.main_image.url }}"
+                    alt="blog-big"
+                    title="blog-big"
+                    class="img-fluid"
+                  />
+                </div>
+                <!--  Blog Top Image End  -->
+                <!--  Blog Details Start  -->
+                <h4>
+                  {{ blog.blog_title }}
+                </h4>
+                <p class="text">{{ blog.date }} / By admin / {{ comments|length }} comments</p>
+                <p class="des">
+                  {{ blog.top_details }}
+                </p>
+                <p class="des">
+                  {{ blog.details2 }}
+                </p>
+                <blockquote>
+                  {{ blog.banner_details }}
+                </blockquote>
+                
+                <p class="des">
+                  {{ blog.buttom_details }}
+                </p>
+                <!--  Blog Details End  -->
+
+                <div class="link">
+                  <!--  Blog Tag Start  -->
+                  <ul class="list-inline float-left icon">
+                    <li class="list-inline-item">Tags :</li>
+                    <li class="list-inline-item">
+                      <a href="#">Life Style, </a>
+                    </li>
+                    <li class="list-inline-item"><a href="#">Dinner, </a></li>
+                    <li class="list-inline-item"><a href="#">Yummy</a></li>
+                  </ul>
+                  <!--  Blog Tag End  -->
+                  <!--  Blog Social Share Start  -->
+                  <ul class="list-inline float-right social">
+                    <li class="list-inline-item">Share :</li>
+                    <li class="list-inline-item">
+                      <a href="https://www.facebook.com/" target="_blank"
+                        ><i class="icofont icofont-social-facebook"></i
+                      ></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://twitter.com/" target="_blank"
+                        ><i class="icofont icofont-social-twitter"></i
+                      ></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://plus.google.com/" target="_blank"
+                        ><i class="icofont icofont-social-google-plus"></i
+                      ></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://in.pinterest.com/" target="_blank"
+                        ><i class="icofont icofont-social-pinterest"></i
+                      ></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://www.instagram.com/" target="_blank"
+                        ><i class="icofont icofont-social-instagram"></i
+                      ></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://www.youtube.com/" target="_blank"
+                        ><i class="icofont icofont-social-youtube-play"></i
+                      ></a>
+                    </li>
+                  </ul>
+                  <!--  Blog Social Share End  -->
+                </div>
+              </div>
+
+              <!--  Blog Comments Start  -->
+              <div class="comment">
+                <h3>COMMENTS ({{ comments|length }})</h3>
+                <ul class="list-unstyled">
+                  {% for comment in comments %}
+                  <li>
+                    <img
+                      src="{% static 'assets/images/background/comment.PNG' %}"
+                      alt="img"
+                      title="img"
+                      class="img-fluid"
+                    />
+                    <div class="caption">
+                      <h5>{{ comment.name|capfirst }}</h5>
+                      <span
+                        >{{ comment.created }}
+                        <a href="#" class="float-right"
+                          ><i class="icofont icofont-reply"></i> Reply</a
+                        ></span
+                      >
+                      <p>
+                        {{ comment.body|capfirst }}
+                      </p>
+                    </div>
+                  </li>
+                  {% endfor %}
+                </ul>
+                <h3>POST A COMMENT</h3>
+                <!--  Blog Comments Form Start  -->
+                <form class="form-horizontal" method="post">
+                  {% csrf_token %}
+                  <fieldset>
+                    <div class="form-group row">
+                      <div class="col-sm-6">
+                        <input
+                          class="form-control"
+                          placeholder="Name*"
+                          id="input-name"
+                          value=""
+                          name="name"
+                          required=""
+                          type="text"
+                        />
+                      </div>
+                      <div class="col-sm-6">
+                        <input
+                          class="form-control"
+                          id="input-email"
+                          placeholder="Email*"
+                          value=""
+                          name="email"
+                          required=""
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-12">
+                        <textarea
+                          class="form-control"
+                          id="input-enquiry"
+                          rows="10"
+                          name="body"
+                          placeholder="Write a comment"
+                          required=""
+                        ></textarea>
+                      </div>
+                    </div>
+                    <button
+                      type="submit"
+                      value="Submit"
+                      class="btn btn-theme btnus"
+                    >
+                      Post Comment
+                    </button>
+                  </fieldset>
+                </form>
+                <!--  Blog Comments Form End  -->
+              </div>
+              <!--  Blog Comments End  -->
+            </div>
+
+            <div class="col-md-3 col-sm-12 col-lg-3 col-12">
+              <!--  Blog Sidebar Start  -->
+              <div class="sidebar-box">
+                <!--  Search widget Start  -->
+                <div class="search">
+                  <form class="form-horizontal" method="get" action="#">
+                    <fieldset>
+                      <div class="form-group">
+                        <input
+                          value="{{ request.GET.s }}" name="s"
+                          class="form-control"
+                          placeholder="Search"
+                          type="text"
+                        />
+                      </div>
+                      <button type="submit" value="submit" class="btn">
+                        <i class="icofont icofont-search"></i>
+                      </button>
+                    </fieldset>
+                  </form>
+                </div>
+                <!--  Search widget End  -->
+              </div>
+              <div class="sidebar-box">
+                <!--  Recent Post widget Start  -->
+                <h6>Recent Blog Posts</h6>
+                <div class="latest">
+                  <ul class="list-unstyled">
+                    {% for blogObj in blogObj %}
+                    <li>
+                        <img src="{{ blogObj.blog_image.url }}" class="img-fluid" alt="image" title="image" />
+                        <div class="caption">
+                          <a href="{% url 'blog' blogObj.pk %}">
+                            <h3>{{ blogObj.blog_title | slice:":15" }}</h3>
+                          </a>
+                            <p class="test">{{ blogObj.date }}</p>
+                            <p class="desc">{{ blogObj.top_details }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <!--  Recent Post widget End  -->
+              </div>
+              <!--  Blog Sidebar End  -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Blog End  -->
+
+      <!-- Testimonials Start  -->
+      <div class="testimonials">
+        <div class="container">
+          <div class="testimonials-inner">
+            <div class="row">
+              <!-- Title Content Start -->
+              <div class="col-sm-12 col-12 commontop white text-center">
+                <h4>What Our Customers Say</h4>
+                <div class="divider style-1 center">
+                  <span class="hr-simple left"></span>
+                  <i class="icofont icofont-ui-press hr-icon"></i>
+                  <span class="hr-simple right"></span>
+                </div>
+              </div>
+              <!-- Title Content End -->
+              <div class="col-sm-12 col-12">
+                <div class="owl-carousel owl-theme owl-testi">
+                  {% for testMonial in testMonial %}
+                  <div class="item">
+                      <p>{{ testMonial.messages }}</p>
+                      <span>- {{ testMonial.clint_name }}</span>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Testimonials End  -->
+
+      <!-- Newsletter Start -->
+      <div id="newsletter">
+        <div class="container">
+          <div id="subscribe">
+            <!-- Subscribe Form -->
+            <form class="form-horizontal" name="subscribe">
+              <div class="row">
+                <div class="col-sm-6 col-md-7">
+                  <div class="input-group">
+                    <span class="news">newsletter</span>
+                    {% for allSections in allSections %}
+                        <p>
+                        {{ allSections.newsletter}}
+                        </p>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-5 form-group">
+                  <div class="input-group">
+                    <input
+                      value=""
+                      name="subscribe_email"
+                      id="subscribe_email"
+                      placeholder="Email"
+                      type="text"
+                    />
+                    <button class="btn btn-news" type="submit" value="submit">
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <!-- Subscribe Form -->
+          </div>
+        </div>
+      </div>
+      <!-- Newsletter End -->
+        
+
+{% endblock %}

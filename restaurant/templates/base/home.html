@@ -1,0 +1,440 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Restaurant | Home {% endblock title %}
+
+{% block content %}
+
+<!-- Banner Start -->
+<div class="banner-bg">
+    <div
+      class="video-bg"
+      data-property="{videoURL:'https://youtu.be/95SNbn340TE',containment:'.banner-bg',autoPlay:true, mute:true, startAt:0, opacity:1}"></div>
+    <!-- Banner Detail Start  -->
+    <div class="banner-detail">
+      <div class="container">
+        <img
+          src="{% static 'assets/images/logo/iconb.png' %}"
+          alt="logo1"
+          title="logo1"
+          class="img-responsive"/>
+        <div class="cd-headline clip">
+          <h4>LOVES<span class="cd-words-wrapper">
+              <b class="is-visible">HEALTHY</b>
+              <b>QUALITY</b>
+              <b>TESTY</b> </span>FOOD
+          </h4>
+        </div>
+        <p>
+          Savor the excellence of our gourmet dishes crafted with fresh, locally-sourced ingredients. Indulge in culinary perfection at our restaurant, where every bite promises a symphony of flavor.
+        </p>
+        <a class="btn-primary btn btn-wide" href="{% url 'menu' %}">Today's menu</a>
+      </div>
+    </div>
+    <!-- Banner Detail End  -->
+  </div>
+  <!-- Banner End  -->
+
+  <!-- Order Start  -->
+  <div class="order">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- Title Content Start -->
+        <div class="col-sm-12 commontop text-center">
+          <h4>Order Delivery and take out</h4>
+          <div class="divider style-1 center">
+            <span class="hr-simple left"></span>
+            <i class="icofont icofont-ui-press hr-icon"></i>
+            <span class="hr-simple right"></span>
+          </div>
+          {% for allSections in allSections %}
+          <p>
+            {{ allSections.order_delivery_title}}
+          </p>
+          {% endfor %}
+        </div>
+        <!-- Title Content End -->
+        <div class="col-lg-7 col-sm-12">
+          <!-- Search Form Start -->
+          <form class="form-horizontal search-icon" method="">
+            <fieldset>
+              <div class="form-group">
+                <input
+                  name=""
+                  value=""
+                  placeholder="Search keyword"
+                  class="form-control"
+                  type="text"/>
+              </div>
+              <button type="submit" value="submit" class="btn btn-theme">
+                <i class="fas fa-search"></i>Search
+              </button>
+            </fieldset>
+          </form>
+          <!-- Search Form End -->
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <i class="fa-solid fa-bowl-food"></i>
+              <p>Select Food</p>
+            </li>
+            <li class="list-inline-item">
+              <i class="fas fa-hamburger"></i>
+              <p>Order Food</p>
+            </li>
+            <li class="list-inline-item">
+              <i class="fa-solid fa-truck-fast"></i>
+              <p>Delivery or Take Out</p>
+            </li>
+          </ul>
+          <img
+            src="{% static 'assets/images/lines.png' %}"
+            alt="line"
+            title="line"
+            class="img-fluid"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Order End  -->
+
+  <!-- Popular Dishes Start -->
+  <div class="dishes">
+    <div class="container">
+      <div class="row">
+        <!-- Title Content Start -->
+        <div class="col-sm-12 commontop text-center">
+          <h4>Our Popular Dishes</h4>
+          <div class="divider style-1 center">
+            <span class="hr-simple left"></span>
+            <i class="icofont icofont-ui-press hr-icon"></i>
+            <span class="hr-simple right"></span>
+          </div>
+          {% for allSections in allSections %}
+          <p>
+            {{ allSections.popular_dish_title}}
+          </p>
+          {% endfor %}
+        </div>
+        <!-- Title Content End -->
+        <div class="col-sm-12">
+          <div class="dish owl-carousel">
+            {% for popularDishes in popularDishes %}
+              <div class="item">
+                <!-- Box Start -->
+                <div class="box">
+                  <a href="{% url 'shop' %}"><img src="{{ popularDishes.dish_picture.url }}" alt="image" title="image" style="width: 261px; height: 197px;" class="img-responsive" /></a>
+                    <div class="caption">
+                      <h4>{{ popularDishes.dish_name | slice:":16" }}</h4>
+                        <span>{{ popularDishes.details | slice:":75" }}</span>
+                        <p>${{ popularDishes.dish_price }}</p>
+                    </div>
+                </div>
+                 <!-- Box End -->
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Popular Dishes End -->
+
+  <!-- Food Menu Start -->
+  <div class="menu">
+    <div class="menu-inner">
+        <div class="container">
+            <div class="row ">
+                <!-- Title Content Start -->
+                <div class="col-sm-12 col-12 commontop text-center">
+                    <h4>Our Menu</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                    {% for allSections in allSections %}
+                    <p>
+                      {{ allSections.menu_title}}
+                    </p>
+                    {% endfor %}
+                </div>
+                <!-- Title Content End -->
+                <div class="col-sm-12 col-12">
+                    <!--  Menu Tabs Start  -->
+                    <ul class="nav nav-tabs list-inline">
+                        {% for category in MenucAT %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if forloop.first %}active{% endif %}" href="#{{ category.name }}" data-toggle="tab" aria-expanded="true">{{ category.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <!--  Menu Tabs Start  -->
+
+                    <!--  Menu Tabs Content Start  -->
+                    <div  class="tab-content">
+                        <!--  Menu Tab Start  -->
+                        {% for category in MenucAT %}
+                        <div class="tab-pane {% if forloop.first %}show active{% endif %}" id="{{ category.name }}">
+                            <div class="row">
+                                {% for dish in category.dishesmenu_set.all %}
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <!-- Box Start -->
+                                    <div class="box">
+                                        <div class="image">
+                                            <img src="{{ dish.dish_picture.url }}" alt="{{ dish.dish_name }}" title="{{ dish.dish_name }}" class="img-fluid" />
+                                        </div>
+                                        <div class="caption">
+                                            <h4>{{ dish.dish_name | slice:":16" }}</h4>
+                                            <p class="des">{{ dish.dish_title | slice:":27" }}</p>
+                                            <span>{{ dish.details | slice:":75" }}</span>
+                                            <div class="price">${{ dish.dish_price }}</div>
+                                        </div>
+                                    </div>
+                                    <!-- Box End -->
+                                </div>
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!--  Menu Tab End  -->
+                    </div>
+                    <!--  Menu Tabs Content End  -->
+                    <div class="text-center padbot30">
+                      <a class="btn btn-theme-alt btn-wide" href="{% url 'menu' %}"
+                        >view more <i class="fas fa-chevron-right"></i
+                      ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Food Menu End -->
+
+  <!-- Reservation Start -->
+  <div class="reservation">
+    <div class="container">
+      <div class="row">
+        <!-- Title Content Start -->
+        <div class="col-sm-12 commontop white text-center">
+          <h4>Book Your Table</h4>
+          <div class="divider style-1 center">
+            <span class="hr-simple left"></span>
+            <i class="icofont icofont-ui-press hr-icon"></i>
+            <span class="hr-simple right"></span>
+          </div>
+          {% for allSections in allSections %}
+          <p>
+            {{ allSections.booking_table_title}}
+          </p>
+          {% endfor %}
+        </div>
+        <!-- Title Content End -->
+        <div class="col-md-12 col-12">
+          <!-- Reservation Form Start -->
+          <form
+            action="#"
+            method="post"
+            class="row reservation-form"
+            novalidate="novalidate"
+          >
+          {% csrf_token %}
+            <div class="form-group col-md-4 col-sm-6">
+              <i class="icofont icofont-ui-user"></i
+              ><input
+                name="name"
+                placeholder="name"
+                id="input-name"
+                class="form-control"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+              <i class="icofont icofont-ui-message"></i
+              ><input
+                name="email"
+                placeholder="email"
+                id="input-email"
+                class="form-control"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+              <i class="icofont icofont-phone"></i
+              ><input
+                name="phone"
+                placeholder="mobile number"
+                id="input-mobile"
+                class="form-control"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+              <i class="icofont icofont-ui-calendar"></i
+              ><input
+                name="reservation_date"
+                placeholder="2024-02-02 (Date)"
+                id="input-date"
+                class="form-control"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+              <i class="icofont icofont-clock-time"></i
+              ><input
+                name="reservation_time"
+                placeholder="06:40 (Time)"
+                id="input-time"
+                class="form-control"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group col-md-4 col-sm-6">
+              <i class="icofont icofont-users"></i
+              ><input
+                name="total_person"
+                placeholder="number of persons"
+                id="input-persons"
+                class="form-control"
+                type="text"
+                required
+              />
+            </div>
+            <div class="form-group col-12 col-md-12">
+              <div class="">
+                <div
+                  id="emailSend"
+                  class="alert alert-success"
+                  role="alert"
+                  style="display: none"
+                >
+                  <div class="success-text">
+                    Your Message has been successfully sent.
+                  </div>
+                </div>
+                <div
+                  id="emailError"
+                  class="alert alert-danger"
+                  role="alert"
+                  style="display: none"
+                >
+                  <div class="alert-text">
+                    Server error <br />
+                    Try again later.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-12 col-md-12">
+              <div class="text-center">
+                <button type="submit" class="btn btn-theme btn-wide">
+                  book now
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- Reservation Form End -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Reservation End  -->
+
+  <!-- Blog Start -->
+  <div class="blog">
+    <div class="bloggs">
+      <div class="container">
+        <div class="row">
+          <!-- Title Content Start -->
+          <div class="col-sm-12 commontop text-center">
+            <h4>Our Blog</h4>
+            <div class="divider style-1 center">
+              <span class="hr-simple left"></span>
+              <i class="icofont icofont-ui-press hr-icon"></i>
+              <span class="hr-simple right"></span>
+            </div>
+              {% for allSections in allSections %}
+              <p>
+                {{ allSections.blog_title}}
+              </p>
+              {% endfor %}
+          </div>
+          <!-- Title Content End -->
+          {% for blogObj in blogObj %}
+          <div class="col-sm-4">
+            <!-- Single Blog Start -->
+            <div class="box">
+              <img
+                src="{{ blogObj.home_image.url }}"
+                class="img-fluid"
+                alt="image"
+                title="image"
+              />
+              <div class="caption">
+                <h4>{{ blogObj.blog_title | slice:":15" }}</h4>
+                <p class="text">{{ blogObj.date }} / By admin / 3 Comments</p>
+                <p class="des">
+                  {{ blogObj.top_details | slice:":150"}}...
+                </p>
+                <a class="btn btn-theme-alt btn-md" href="{% url 'blog' blogObj.pk %}"
+                  >Read More <i class="fas fa-chevron-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- Single Blog End -->
+          </div>
+          {% endfor %}
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Blog End -->
+
+  <!-- Newsletter Start -->
+  <div id="newsletter">
+    <div class="container">
+      <div id="subscribe">
+        <!-- Subscribe Form -->
+        <form class="form-horizontal" name="subscribe">
+          <div class="row">
+            <div class="col-sm-6 col-md-7">
+              <div class="input-group">
+                <span class="news">newsletter</span>
+                  {% for allSections in allSections %}
+                  <p>
+                    {{ allSections.newsletter}}
+                  </p>
+                  {% endfor %}
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-5 form-group">
+              <div class="input-group">
+                <input
+                  value=""
+                  name="subscribe_email"
+                  id="subscribe_email"
+                  placeholder="Email"
+                  type="text"
+                />
+                <button class="btn btn-news" type="submit" value="submit">
+                  Send
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- Subscribe Form -->
+      </div>
+    </div>
+  </div>
+  <!-- Newsletter End -->
+
+
+{% endblock %}

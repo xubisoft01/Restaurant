@@ -1,0 +1,95 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Restaurant | Error404 {% endblock title %}
+
+{% block content %}
+
+
+      <!-- Breadcrumb Start -->
+      <div class="bread-crumb">
+        <div class="container">
+            <div class="matter">
+                <h2>Page Not Found</h2>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="list-inline-item"><a href="#">Page not found</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- Service Start  -->
+    <div class="page-not-found">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-12 col-xs-12">
+
+                </div>
+
+                <!-- Title Content Start -->
+                <div class="col-sm-12 col-xs-12 commontop text-center">
+                    <h4>Page not found!</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                    <div class="error-content">
+                        <h2>404</h2>
+                        <h3>Oops! Looks like something going rong</h3>
+                        <p>We can’t seem to find the page you’re looking for make sure that you have typed the currect URL</p>
+                        <a class="btn btn-theme btn-wide" href="{% url 'home' %}">Go to home</a>
+                    </div>
+                </div>
+                <!-- Title Content End -->
+
+            </div>
+        </div>
+    </div>
+    <!-- Service End   -->
+
+
+<!-- Newsletter Start -->
+<div id="newsletter">
+<div class="container">
+  <div id="subscribe">
+    <!-- Subscribe Form -->
+    <form class="form-horizontal" name="subscribe">
+      <div class="row">
+        <div class="col-sm-6 col-md-7">
+          <div class="input-group">
+            <span class="news">newsletter</span>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Nam iaculis lorem augue, at quam finibus eget.
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-5 form-group">
+          <div class="input-group">
+            <input
+              value=""
+              name="subscribe_email"
+              id="subscribe_email"
+              placeholder="Email"
+              type="text"
+            />
+            <button class="btn btn-news" type="submit" value="submit">
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- Subscribe Form -->
+  </div>
+</div>
+</div>
+<!-- Newsletter End -->
+
+        
+
+{% endblock %}

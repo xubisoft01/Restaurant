@@ -1,0 +1,298 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Restaurant | Menu {% endblock title %}
+
+{% block content %}
+
+
+
+       <!-- Breadcrumb Start -->
+       <div class="bread-crumb">
+        <div class="container">
+            <div class="matter">
+                <h2>Food Menu</h2>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="list-inline-item"><a href="#">Food Menu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Popular Dishes Start -->
+    <div class="dishes no-border">
+        <div class="container">
+            <div class="row">
+                <!-- Title Content Start -->
+                <div class="col-sm-12 commontop text-center">
+                    <h4>Our Popular Dishes</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                    {% for allSections in allSections %}
+                    <p>
+                      {{ allSections.popular_dish_title}}
+                    </p>
+                    {% endfor %}
+                </div>
+                <!-- Title Content End -->
+                <div class="col-sm-12">
+                    <div class="dish owl-carousel">
+                        {% for popularDishes in popularDishes %}
+                        <div class="item">
+                            <!-- Box Start -->
+                            <div class="box">
+                                <a href="{% url 'shop' %}"><img src="{{ popularDishes.dish_picture.url }}" alt="image" title="image" style="width: 261px; height: 197px;" class="img-responsive" /></a>
+                                <div class="caption">
+                                    <h4>{{ popularDishes.dish_name | slice:":16" }}</h4>
+                                    <span>{{ popularDishes.details | slice:":75" }}</span>
+                                    <p>${{ popularDishes.dish_price }}</p>
+                                </div>
+                            </div>
+                            <!-- Box End -->
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popular Dishes End -->
+
+    <!-- Food Menu Start -->
+    <div class="menu">
+        <div class="menu-inner">
+            <div class="container">
+                <div class="row ">
+                    <!-- Title Content Start -->
+                    <div class="col-sm-12 col-12 commontop text-center">
+                        <h4>Our Menu</h4>
+                        <div class="divider style-1 center">
+                            <span class="hr-simple left"></span>
+                            <i class="icofont icofont-ui-press hr-icon"></i>
+                            <span class="hr-simple right"></span>
+                        </div>
+                        {% for allSections in allSections %}
+                        <p>
+                        {{ allSections.menu_title}}
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <!-- Title Content End -->
+                    <div class="col-sm-12 col-12">
+                        <!--  Menu Tabs Start  -->
+                        <ul class="nav nav-tabs list-inline">
+                            {% for category in MenucAT %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if forloop.first %}active{% endif %}" href="#{{ category.name }}" data-toggle="tab" aria-expanded="true">{{ category.name }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <!--  Menu Tabs Start  -->
+
+                        <!--  Menu Tabs Content Start  -->
+                        <div  class="tab-content">
+                            <!--  Menu Tab Start  -->
+                            {% for category in MenucAT %}
+                            <div class="tab-pane {% if forloop.first %}show active{% endif %}" id="{{ category.name }}">
+                                <div class="row">
+                                    {% for dish in category.dishesmenu_set.all %}
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        <!-- Box Start -->
+                                        <div class="box">
+                                            <div class="image">
+                                                <img src="{{ dish.dish_picture.url }}" alt="{{ dish.dish_name }}" title="{{ dish.dish_name }}" class="img-fluid" />
+                                            </div>
+                                            <div class="caption">
+                                                <h4>{{ dish.dish_name | slice:":16" }}</h4>
+                                                <p class="des">{{ dish.dish_title | slice:":27" }}</p>
+                                                <span>{{ dish.details | slice:":75" }}</span>
+                                                <div class="price">${{ dish.dish_price }}</div>
+                                            </div>
+                                        </div>
+                                        <!-- Box End -->
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!--  Menu Tab End  -->
+                        </div>
+                        <!--  Menu Tabs Content End  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Food Menu End -->
+
+    <!-- Fun-Factor Start -->
+    <div class="fun-factor">
+        <div class="container">
+            <div class="row ">
+                {% for funFactor in funFactor %}
+                <div class="col-sm-3 col-6">
+                    <!-- Fun-Factor Box Start -->
+                    <div class="single-box">
+                        <span>
+                            <i class="icofont {{ funFactor.icone }}"></i>
+                        </span>
+                        <h4 class="number" data-from="100" data-to="{{ funFactor.values }}" data-refresh-interval="10">
+                            {{ funFactor.values }}</h4>
+                        <h3>{{ funFactor.title }}</h3>
+                    </div>
+                    <!-- Fun-Factor Box End -->
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Fun-Factor End -->
+
+    <!-- Reservation Start -->
+    <div class="reservation">
+        <div class="container">
+            <div class="row ">
+                <!-- Title Content Start -->
+                <div class="col-sm-12 commontop white text-center">
+                    <h4>Book Your Table</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                    {% for allSections in allSections %}
+                        <p>
+                        {{ allSections.booking_table_title}}
+                        </p>
+                    {% endfor %}
+                </div>
+                <!-- Title Content End -->
+                <div class="col-md-12 col-12">
+                    <!-- Reservation Form Start -->
+                    <form action="#" method="post" class="row reservation-form" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-ui-user"></i><input name="name" placeholder="name" id="input-name" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-ui-message"></i><input name="email" placeholder="email" id="input-email" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-phone"></i><input name="phone" placeholder="mobile number" id="input-mobile" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-ui-calendar"></i><input name="reservation_date" placeholder="2024-02-02 (Date)" id="input-date" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-clock-time"></i><input name="reservation_time" placeholder="06:40 (Time)" id="input-time" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-md-4 col-sm-6">
+                            <i class="icofont icofont-users"></i><input name="total_person" placeholder="number of persons" id="input-persons" class="form-control" type="text" required>
+                        </div>
+                        <div class="form-group col-12 col-md-12">
+                            <div class="">  
+                                <div id="emailSend" class="alert alert-success" role="alert" style="display: none;">
+                                    <div class="success-text">Your Message has been successfully sent.</div>
+                                </div>
+                                <div id="emailError" class="alert alert-danger" role="alert" style="display: none;">
+                                    <div class="alert-text">Server error <br> Try again later.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-12 col-md-12">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-theme btn-wide">book now</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Reservation Form End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Reservation End  -->
+
+
+    <!-- Testimonials Start  -->
+    <div class="testimonials">
+        <div class="container">
+            <div class="testimonials-inner">
+                <div class="row ">
+                    <!-- Title Content Start -->
+                    <div class="col-sm-12 col-xs-12 commontop white text-center">
+                        <h4>What Our Customers Say</h4>
+                        <div class="divider style-1 center">
+                            <span class="hr-simple left"></span>
+                            <i class="icofont icofont-ui-press hr-icon"></i>
+                            <span class="hr-simple right"></span>
+                        </div>
+                    </div>
+                    <!-- Title Content End -->
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="owl-carousel owl-theme owl-testi">
+                            {% for testMonial in testMonial %}
+                            <div class="item">
+                                <p>{{ testMonial.messages }}</p>
+                                <span>- {{ testMonial.clint_name }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Testimonials End  -->
+
+
+
+<!-- Newsletter Start -->
+<div id="newsletter">
+<div class="container">
+  <div id="subscribe">
+    <!-- Subscribe Form -->
+    <form class="form-horizontal" name="subscribe">
+      <div class="row">
+        <div class="col-sm-6 col-md-7">
+          <div class="input-group">
+            <span class="news">newsletter</span>
+            {% for allSections in allSections %}
+                <p>
+                 {{ allSections.newsletter}}
+                </p>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-5 form-group">
+          <div class="input-group">
+            <input
+              value=""
+              name="subscribe_email"
+              id="subscribe_email"
+              placeholder="Email"
+              type="text"
+            />
+            <button class="btn btn-news" type="submit" value="submit">
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- Subscribe Form -->
+  </div>
+</div>
+</div>
+<!-- Newsletter End -->
+
+
+        
+
+{% endblock %}

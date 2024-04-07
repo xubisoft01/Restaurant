@@ -1,0 +1,154 @@
+{% load static %}
+   <!-- Footer Start -->
+   <footer>
+    <div class="container">
+      <div class="row inner">
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <!-- Footer Widget Start -->
+          <h5>Contact Us</h5>
+          {% for contactAddresses in contactAddresses %}
+          <ul class="list-unstyled contact">
+            <li>
+              <i class="fa-solid fa-location-dot"></i> {{ contactAddresses.address }}
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i> {{ contactAddresses.primary_phone_no }},<br />
+               {{ contactAddresses.phone_no }}
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa-solid fa-envelope"></i
+                >{{ contactAddresses.primary_email }}
+                </a
+              >
+            </li>
+          </ul>
+          {% endfor %}
+          <!-- Footer Widget End -->
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <!-- Footer Widget Start -->
+          <h5>Information</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'about' %}">About us</a></li>
+            <li><a href="#">Delivery Information</a></li>
+            <li><a href="{% url 'contact' %}">Contact us</a></li>
+            <li><a href="{% url 'contact' %}">Terms & Conditions</a></li>
+            <li><a href="{% url 'reservation' %}">Reservation</a></li>
+          </ul>
+          <!-- Footer Widget End -->
+        </div>
+        <div class="w-100 d-none d-xs-block"></div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <!-- Footer Widget Start -->
+          <h5>Open Hours</h5>
+          <ul class="list-unstyled">
+            {% for opEn in opEn %}
+            <li>{{ opEn.day }} : {{ opEn.start_time }} to {{ opEn.end_time }}</li>
+            {% endfor %}
+          </ul>
+          <!-- Footer Widget End -->
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-3">
+          <!-- Footer Widget Start -->
+          <h5>Instagram</h5>
+          <ul class="list-unstyled insta">
+            <li>
+              <a href="#"
+                ><img src="{% static 'assets/images/instagram/1.jpg' %}" alt="image"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="{% static 'assets/images/instagram/2.jpg' %}" alt="image"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="{% static 'assets/images/instagram/3.jpg' %}" alt="image"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="{% static 'assets/images/instagram/4.jpg' %}" alt="image"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="{% static 'assets/images/instagram/5.jpg' %}" alt="image"
+              /></a>
+            </li>
+            <li>
+              <a href="#"
+                ><img src="{% static 'assets/images/instagram/6.jpg' %}" alt="image"
+              /></a>
+            </li>
+          </ul>
+          <!-- Footer Widget End -->
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row powered">
+          <!--  Copyright Start -->
+          <div class="col-md-3 col-sm-6 order-md-1">
+            {% for contactAddresses in contactAddresses %}
+            <img
+              src="{{ contactAddresses.footer_logo.url }}"
+              class="img-fluid"
+              title="logo"
+              alt="logo"
+            />
+            {% endfor %}
+          </div>
+          <div class="col-md-3 col-sm-6 text-right order-md-3">
+            <!--  Footer Social Start -->
+            <ul class="list-inline social">
+              <li class="list-inline-item">
+                <a
+                  href="https://www.facebook.com/spheretheme/"
+                  target="_blank"
+                  ><i class="fa-brands fa-facebook-f"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://twitter.com/spheretheme/" target="_blank"
+                  ><i class="fa-brands fa-twitter"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://plus.google.com/" target="_blank"
+                  ><i class="fa-brands fa-google-plus-g"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://in.pinterest.com/" target="_blank"
+                  ><i class="fa-brands fa-pinterest-p"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.instagram.com/" target="_blank"
+                  ><i class="fa-brands fa-instagram"></i
+                ></a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://www.youtube.com/" target="_blank"
+                  ><i class="fa-brands fa-youtube"></i
+                ></a>
+              </li>
+            </ul>
+            <!--  Footer Social End -->
+          </div>
+          <div class="col-md-6 col-sm-12 text-center order-md-2">
+            <p>
+              Copyright © <span>Restaurant</span> 2024. All
+              Rights Reserved.
+            </p>
+          </div>
+          <!--  Copyright End -->
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer End  -->

@@ -1,0 +1,233 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block title %} Restaurant | Contact Us {% endblock title %}
+
+{% block content %}
+
+
+       <!-- Breadcrumb Start -->
+       <div class="bread-crumb">
+        <div class="container">
+            <div class="matter">
+                <h2>Contact Us</h2>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="{% url 'home' %}">HOME</a></li>
+                    <li class="list-inline-item"><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Contact us Start -->
+    <div class="contactus">
+        <div class="container">
+            <div class="row">
+                <!-- Title Content Start -->
+                <div class="col-sm-12 commontop text-center">
+                    <div> 
+                        {% if messages %}
+                             {% for message in messages %}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                     {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <h4>Get In Touch</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                    {% for contactAddresses in contactAddresses %}
+                    <p>{{ contactAddresses.top_title}}</p>
+                    {% endfor %}
+                </div>
+                <!-- Title Content End -->
+
+                <div class="col-md-5 col-12">
+                    <!--  Contact form Start  -->
+                    <form method="post" enctype="multipart/form-data" class="form-horizontal">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <i class="icofont icofont-ui-user"></i>
+                                <input type="text" name="name" value="" id="input-name" class="form-control" placeholder="name"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <i class="icofont icofont-ui-message"></i>
+                                <input type="text" name="email" value="" id="input-email" class="form-control" placeholder="email"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <i class="icofont icofont-phone"></i>	
+                                <input type="text" name="phone" value="" id="input-phone" class="form-control" placeholder="mobile number"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <i class="icofont icofont-pencil-alt-5"></i>
+                                <textarea name="messages" id="input-enquiry" class="form-control" rows="5" placeholder="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <input class="btn btn-theme btn-block" type="submit" value="Send Message" />
+                        </div>
+                    </form>
+                    <!--  Contact form End  -->
+                </div>
+                <div class="col-md-7 col-12">
+                    <!--  Map Start  -->
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115073.2374313485!2d-73.93673358491914!3d40.72030531038137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1513832984699"></iframe>
+                    </div>
+                    <!--  Map End  -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact Us End  -->
+
+    <!-- Address Start  -->
+    <div class="address">
+        <div class="container">
+            <div class="row">
+                {% for contactAddresses in contactAddresses %}
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="address-box">
+                        <div class="box text-center">
+                            <div class="icon">
+                                <i class="icofont icofont-home"></i>
+                            </div>
+                            <h4>ADDRESS</h4>
+                            <p>{{contactAddresses.address}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="address-box">
+                        <div class="box text-center">
+                            <div class="icon">
+                                <i class="icofont icofont-phone"></i>
+                            </div>
+                            <h4>PHONE NO.</h4>
+                            <p>{{contactAddresses.primary_phone_no}},<br>{{contactAddresses.phone_no}}</p>
+                        </div>	
+                    </div>	
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="address-box">
+                        <div class="box text-center">
+                            <div class="icon">
+                                <i class="icofont icofont-ui-message"></i>	
+                            </div>
+                            <h4>EMAIL</h4>
+                            <p><a href="#">{{contactAddresses.primary_email}}</a><br>
+                                <a href="#">{{contactAddresses.email}}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="address-box">
+                        <div class="box social">
+                            <h4>SOCIAL LINKES</h4>
+                            <ul class="list-inline ">
+                                <li class="list-inline-item"><a href="https://www.facebook.com/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://twitter.com/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                <li class="list-inline-item"><a href="https://plus.google.com/" target="_blank"><i class="icofont icofont-social-google-plus"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.instagram.com/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="https://in.pinterest.com/" target="_blank"><i class="icofont icofont-social-pinterest"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.stumbleupon.com/" target="blank"><i class="icofont icofont-social-stumbleupon"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.youtube.com/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                <li class="list-inline-item"><a href="https://www.yelp.com/" target="_blank"><i class="icofont icofont-social-yelp"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Address End  -->
+
+    <!-- Testimonials Start  -->
+    <div class="testimonials">
+        <div class="container">
+            <div class="testimonials-inner">
+                <div class="row ">
+                    <!-- Title Content Start -->
+                    <div class="col-sm-12 col-xs-12 commontop white text-center">
+                        <h4>What Our Customers Say</h4>
+                        <div class="divider style-1 center">
+                            <span class="hr-simple left"></span>
+                            <i class="icofont icofont-ui-press hr-icon"></i>
+                            <span class="hr-simple right"></span>
+                        </div>
+                    </div>
+                    <!-- Title Content End -->
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="owl-carousel owl-theme owl-testi">
+                            {% for testMonial in testMonial %}
+                            <div class="item">
+                                <p>{{ testMonial.messages }}</p>
+                                <span>- {{ testMonial.clint_name }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Testimonials End  -->
+
+
+<!-- Newsletter Start -->
+<div id="newsletter">
+<div class="container">
+  <div id="subscribe">
+    <!-- Subscribe Form -->
+    <form class="form-horizontal" name="subscribe">
+      <div class="row">
+        <div class="col-sm-6 col-md-7">
+          <div class="input-group">
+            <span class="news">newsletter</span>
+            {% for allSections in allSections %}
+                <p>
+                {{ allSections.newsletter}}
+                </p>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-5 form-group">
+          <div class="input-group">
+            <input
+              value=""
+              name="subscribe_email"
+              id="subscribe_email"
+              placeholder="Email"
+              type="text"
+            />
+            <button class="btn btn-news" type="submit" value="submit">
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- Subscribe Form -->
+  </div>
+</div>
+</div>
+<!-- Newsletter End -->
+        
+
+{% endblock %}

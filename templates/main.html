@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="theme-color" content="#e54c2a"/>
+    <!-- Favicon -->
+    <link type="image/x-icon" rel="shortcut icon" href="{% static 'assets/images/logo/iconb.png' %}"/>
+    <title> {% block title %} {% endblock title %} </title>
+    <meta name="description" content="Restaurant"/>
+
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <!-- Bootstrap stylesheet -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+    <!-- icofont -->
+    <link href="{% static 'assets/css/icofont.css' %}" rel="stylesheet" type="text/css" />
+    <!-- crousel css -->
+    <link href="{% static 'assets/css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Animated Headlines css -->
+    <link href="{% static 'assets/css/animated-headlines.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- mb.YTPlayer css -->
+    <link href="{% static 'assets/css/jquery.mb.YTPlayer.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- Switch Style css -->
+    <link href="{% static 'assets/css/switch-style.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Theme Stylesheet -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome.css' %}" />
+    <!-- Switch Color Style css -->
+    <link href="#" data-style="styles" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="wrapper">
+        {% include 'header.html' %}
+
+        {% block content %}
+        
+        {% endblock  %}
+        
+        {% include 'footer.html' %}
+    </div>
+
+    <!-- jquery -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <!-- jquery Validate -->
+    <script src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
+    <!-- popper js -->
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <!-- bootstrap js -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- owlcarousel js -->
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <!--inview js code-->
+    <script src="{% static 'assets/js/jquery.inview.min.js' %}"></script>
+    <!--CountTo js code-->
+    <script src="{% static 'assets/js/jquery.countTo.js' %}"></script>
+    <!-- Animated Headlines js code-->
+    <script src="{% static 'assets/js/animated-headlines.js' %}"></script>
+    <!-- mb.YTPlayer js code-->
+    <script src="{% static 'assets/js/jquery.mb.YTPlayer.min.js' %}"></script>
+    <!-- Switch Style js -->
+    <script src="{% static 'assets/js/switch-style.js' %}"></script>
+    <!--internal js-->
+    <script src="{% static 'assets/js/internal.js' %}"></script>
+  </body>
+</html>
